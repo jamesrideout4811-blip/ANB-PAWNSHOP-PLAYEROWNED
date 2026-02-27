@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NB Pawn Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app" class="app hidden">
+    <div class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="dot"></div>
+          <div class="titles">
+            <div id="title" class="title">Pawn Shop</div>
+            <div id="subtitle" class="subtitle">Sell / Buyback</div>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button id="btnClose" class="btn ghost" title="Close (ESC)">Close</button>
+        </div>
+      </header>
+
+      <!-- Pawn View -->
+      <section id="viewPawn" class="view">
+        <div class="toolbar">
+          <div class="seg">
+            <button id="tabSell" class="seg-btn active">Sell</button>
+            <button id="tabBuyback" class="seg-btn">Buyback</button>
+          </div>
+          <div class="spacer"></div>
+          <div class="search">
+            <input id="searchPawn" type="text" placeholder="Search items…" />
+          </div>
+        </div>
+
+        <div class="content two-col">
+          <div class="panel">
+            <div class="panel-title" id="listTitle">Your sellable items</div>
+            <div id="listPawn" class="list"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Checkout</div>
+            <div id="checkoutPawn" class="checkout">
+              <div class="empty">Select an item to continue.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Management View -->
+      <section id="viewManage" class="view hidden">
+        <div class="manage">
+          <aside class="sidebar">
+            <button class="nav-btn active" data-nav="dash">Dashboard</button>
+            <button class="nav-btn" data-nav="bank" id="navBank">Bank</button>
+            <button class="nav-btn" data-nav="counter">Counter</button>
+            <button class="nav-btn" data-nav="staff" id="navStaff">Staff</button>
+            <div class="sidebar-foot">
+              <button id="btnOpenStock" class="btn ghost full">Open Stock Stash</button>
+            </div>
+          </aside>
+
+          <main class="main">
+            <div id="manageDash" class="mview">
+              <div class="cards">
+                <div class="card">
+                  <div class="card-k">Business Balance</div>
+                  <div class="card-v" id="mBankBalance">$0</div>
+                </div>
+                <div class="card">
+                  <div class="card-k">Active Staff</div>
+                  <div class="card-v" id="mActiveCount">0</div>
+                </div>
+                <div class="card">
+                  <div class="card-k">Your Status</div>
+                  <div class="card-v" id="mMyStatus">Off duty</div>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-title">Quick Actions</div>
+                <div class="row">
+                  <button id="btnToggleClock" class="btn">Clock In / Out</button>
+                  <div class="hint" id="mClockHint"></div>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-title">Active Staff</div>
+                <div id="mActiveList" class="list"></div>
+              </div>
+            </div>
+
+            <div id="manageBank" class="mview hidden">
+              <div class="panel">
+                <div class="panel-title">Business Banking</div>
+                <div class="row wrap">
+                  <div class="field">
+                    <label>Amount</label>
+                    <input id="bankAmount" type="number" min="0" placeholder="0" />
+                  </div>
+                  <button id="btnDeposit" class="btn">Deposit</button>
+                  <button id="btnWithdraw" class="btn">Withdraw</button>
+                  <div class="spacer"></div>
+                  <div class="pill">Balance: <span id="bankBalanceInline">$0</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="manageCounter" class="mview hidden">
+              <div class="panel">
+                <div class="panel-title">Buy From Customer</div>
+                <div class="row wrap">
+                  <div class="field">
+                    <label>Customer Server ID</label>
+                    <input id="custId" type="number" min="1" placeholder="e.g. 12" />
+                  </div>
+                  <button id="btnLoadCustomer" class="btn">Load</button>
+                  <div class="spacer"></div>
+                  <div class="hint" id="custHint"></div>
+                </div>
+              </div>
+
+              <div class="content two-col">
+                <div class="panel">
+                  <div class="panel-title">Customer sellables</div>
+                  <div id="custList" class="list"></div>
+                </div>
+                <div class="panel">
+                  <div class="panel-title">Checkout</div>
+                  <div id="custCheckout" class="checkout">
+                    <div class="empty">Load a customer, then select an item.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="manageStaff" class="mview hidden">
+              <div class="panel">
+                <div class="panel-title">Staff Management (Boss)</div>
+                <div class="row wrap">
+                  <div class="field">
+                    <label>Server ID</label>
+                    <input id="staffId" type="number" min="1" placeholder="e.g. 8" />
+                  </div>
+                  <div class="field">
+                    <label>Grade</label>
+                    <input id="staffGrade" type="number" min="0" placeholder="0" />
+                  </div>
+                  <button id="btnHire" class="btn">Set Job / Hire</button>
+                  <button id="btnFire" class="btn danger">Fire</button>
+                </div>
+                <div class="hint">Tip: “Set Job” assigns the pawnshop job at the grade you choose.</div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </section>
+
+      <div id="toastWrap" class="toast-wrap"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
